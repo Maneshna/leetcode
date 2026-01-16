@@ -1,35 +1,34 @@
 class Solution {
 public:
     vector<int> nextGreaterElement(vector<int>& nums1, vector<int>& nums2) {
+        unordered_map<int, int> nge;
+        stack<int> st;
+
+        // build next greater map for nums2
+        for (int num : nums2) {
+            while (!st.empty() && num > st.top()) {
+                nge[st.top()] = num;
+                st.pop();
+            }
+            st.push(num);
+        }
+
+        // remaining elements have no next greater
+        while (!st.empty()) {
+            nge[st.top()] = -1;
+            st.pop();
+        }
+
+        // answer nums1 using map
         vector<int> ans;
-
-        for (int x : nums1) {
-            int idx = -1;
-
-            // find index of x in nums2
-            for (int i = 0; i < nums2.size(); i++) {
-                if (nums2[i] == x) {
-                    idx = i;
-                    break;
-                }
-            }
-
-            int nextGreater = -1;
-
-            // search to the right
-            for (int j = idx + 1; j < nums2.size(); j++) {
-                if (nums2[j] > x) {
-                    nextGreater = nums2[j];
-                    break;
-                }
-            }
-
-            ans.push_back(nextGreater);
+        for (int num : nums1) {
+            ans.push_back(nge[num]);
         }
 
         return ans;
     }
 };
+
 
 
 
