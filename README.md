@@ -1,3 +1,5 @@
 # leetcode
 
-All the solutions to the questions that i do on leetcode is automatically upadated here. 
+## 📊 LeetCode Progress
+
+Problems Solved: <!--COUNT_START-->0<!--COUNT_END-->
