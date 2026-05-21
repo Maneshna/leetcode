@@ -2,17 +2,29 @@ class Solution {
 public:
     vector<int> sortedSquares(vector<int>& nums) {
         int n = nums.size();
-        for(int i = 0; i<n; i++){
-            nums[i]=nums[i]*nums[i];
 
+        vector <int> result(n);
 
+        int left = 0;
+        int right = n-1;
+        int index = n-1;
+
+        while(left<=right){
+            int leftsq= nums[left]*nums[left];
+            int rightsq= nums[right]*nums[right];
+
+            if(leftsq < rightsq){
+                result[index]= rightsq;
+                right--;
+            }
+            else{
+                result[index]=leftsq;
+                left++;
+            }
+            index--;
         }
-        stable_sort(nums.begin(), nums.end());
-        
-        // 3. Return the sorted array
-        return nums;
-       
-        
-        
+        return result;
+
     }
+
 };
