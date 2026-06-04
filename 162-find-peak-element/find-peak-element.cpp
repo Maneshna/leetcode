@@ -1,18 +1,24 @@
 class Solution {
 public:
     int findPeakElement(vector<int>& nums) {
-        int n=nums.size();
-        for(int i =0; i<n;i++){
-            bool left_valid = (i == 0 || nums[i] > nums[i - 1]);
+        int left = 0;
+        int right = nums.size() - 1;
+        
+        while (left < right) {
+            int mid = left + (right - left) / 2;
             
-            
-            bool right_valid = (i == n - 1 || nums[i] > nums[i + 1]);
-            
-            if (left_valid && right_valid) {
-                return i;
+            // If the element to the right is greater, 
+            // then a peak must exist on the right half.
+            if (nums[mid] < nums[mid + 1]) {
+                left = mid + 1;
+            } 
+            // Otherwise, a peak must exist on the left half (including mid).
+            else {
+                right = mid;
             }
         }
-        return -1;
         
+        // 'left' and 'right' will converge to the peak element index
+        return left;
     }
 };
