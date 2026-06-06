@@ -2,4 +2,4 @@
 
 ## 📊 LeetCode Progress
 
-Problems Solved: <!--COUNT_START-->122<!--COUNT_END-->
+Problems Solved: <!--COUNT_START-->123<!--COUNT_END-->
