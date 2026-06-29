@@ -1,23 +1,20 @@
 class Solution {
-
 public:
     int findDuplicate(vector<int>& nums) {
-        int slow = nums[0];
-        int fast = nums[0];
+        //most optimal way i thought was using hashmap 
+        unordered_set<int> seen;
 
-        // Phase 1: detect cycle
-        do {
-            slow = nums[slow];
-            fast = nums[nums[fast]];
-        } while (slow != fast);
-
-        // Phase 2: find cycle entry
-        slow = nums[0];
-        while (slow != fast) {
-            slow = nums[slow];
-            fast = nums[fast];
+        for(int num : nums){
+            if(seen.count(num)){
+                return num;
+            }
+            seen.insert(num);
         }
+        return -1;
 
-        return slow;
+
+
+        
+        
     }
 };
