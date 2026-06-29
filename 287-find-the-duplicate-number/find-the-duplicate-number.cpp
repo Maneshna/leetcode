@@ -1,20 +1,21 @@
 class Solution {
 public:
     int findDuplicate(vector<int>& nums) {
-        //most optimal way i thought was using hashmap 
-        unordered_set<int> seen;
+        int slow = nums[0];
+        int fast = nums[0];
 
-        for(int num : nums){
-            if(seen.count(num)){
-                return num;
-            }
-            seen.insert(num);
+        do{
+            slow = nums[slow];
+            fast=nums[nums[fast]];
+
         }
-        return -1;
-
-
-
-        
+        while(slow != fast);
+        slow = nums[0];
+        while(slow != fast){
+            slow = nums[slow];
+            fast = nums[fast];
+        }
+        return slow;
         
     }
 };
