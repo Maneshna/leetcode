@@ -1,6 +1,7 @@
 class Solution {
 public:
     int numOfUnplacedFruits(vector<int>& fruits, vector<int>& baskets) {
+        //the core idea in this is that we traverse through the bacskets one and assign the first one that is more than the fruits one and then mark it -1 and also change the bool value in the fruits one to true since it got placed. if it not placed then we obviously count in the the lower if statement of not placed.
         int n =fruits.size();
         int unplaced =0;
 
