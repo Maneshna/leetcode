@@ -9,8 +9,9 @@
 class Solution {
 public:
     bool hasCycle(ListNode *head) {
-        if(head == nullptr || head->next==nullptr){
-            return false; //this means no element in the linked list
+        if(head == nullptr || head->next == nullptr){
+            return false;
+
         }
         ListNode *slow = head;
         ListNode *fast = head;
@@ -21,9 +22,7 @@ public:
             if(slow==fast){
                 return true;
             }
-        }
-        return false; 
-
+        }return false;
         
     }
 };
