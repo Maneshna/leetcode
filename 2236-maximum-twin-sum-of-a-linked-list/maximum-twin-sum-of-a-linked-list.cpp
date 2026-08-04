@@ -11,18 +11,18 @@
 class Solution {
 public:
     int pairSum(ListNode* head) {
-
-        vector<int>values;
-        ListNode*curr = head;
-        while(curr!= nullptr){
+        vector<int> values;
+        //head creation 
+        ListNode *curr = head;
+        while(curr!=nullptr){
             values.push_back(curr->val);
-            curr = curr->next;
+            curr=curr->next;
         }
 
-        int n =values.size();
-        int maxsum = 0;
-        for(int i = 0; i<n/2; i++){
-            int twinsum = values[i] + values[n-1-i];
+        int maxsum =0;
+        int n = values.size();
+        for(int i =0; i<n/2; i++){
+            int twinsum = values[i]+values[n-i-1];
             maxsum = max(maxsum, twinsum);
         }
         return maxsum;
