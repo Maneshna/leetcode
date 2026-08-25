@@ -1,36 +1,31 @@
 class Solution {
 public:
-
-    bool isPalindrome(const string& s, int left, int right){
-        while(left<right){
-            if(s[left] != s[right]){
-                return false;
-                
-            }
-            left++;
-            right--;
+    int expandAroundCenter(const string& s, int left, int right){
+        while(left >=0 && right<s.length() && s[left] == s[right]){
+            left--;
+            right++;
         }
-        return true;
+        return right-left-1;
     }
+    
     string longestPalindrome(string s) {
-        int n =s.length();
-        if(n<=1) return s;
+        if(s.empty()) return "";
 
+        int start =0;
         int maxLen = 0;
-        int start = 0;
 
-        for(int i =0; i<n; i++){
-            for(int j =i; j<n; j++){
-                if(isPalindrome(s,i,j)){
-                    int currentLen = j-i+1;
-                    if(currentLen > maxLen){
-                        maxLen = currentLen;
-                        start = i;
-                    }
-                }
+        for(int i =0;i<s.length(); i++){
+            int Len1 = expandAroundCenter(s, i, i);
+            int Len2 = expandAroundCenter(s, i, i+1);
+            int currentMax = max(Len1, Len2);
+
+            if(currentMax > maxLen){
+                maxLen = currentMax;
+                start = i-(currentMax-1) /2;
             }
         }
         return s.substr(start, maxLen);
+         
         
     }
 };
