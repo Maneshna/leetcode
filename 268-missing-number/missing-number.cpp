@@ -1,19 +1,12 @@
 class Solution {
 public:
     int missingNumber(vector<int>& nums) {
-        int n = nums.size();
-        vector<bool> seen(n+1, false);
+        int missing = nums.size();
 
-        for(int num: nums){
-            seen[num] = true;
+        for(int i =0;i<nums.size(); i++){
+            missing ^= i^nums[i]; //xor number from 0-n and the number from the array nums. the last remaning value will the missing number
         }
-        for(int i =0; i<=n;i++){ //iterate through numbers 
-            if(!seen[i]){
-                return i;
-            }
-        }
-        return -1;
-
+        return missing;
         
     }
 };
