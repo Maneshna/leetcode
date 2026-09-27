@@ -11,28 +11,34 @@
 class Solution {
 public:
     bool isPalindrome(ListNode* head) {
-        vector<int> values;
-        ListNode* curr = head;
-        while (curr != nullptr) {
-            values.push_back(curr->val);
-            curr = curr->next;
+        //find the mid one 
+        if(head == nullptr || head->next == nullptr){
+            return true;
         }
-        
-        
-        int left = 0;
-        int right = values.size() - 1;
-        
-        while (left < right) {
-            if (values[left] != values[right]) {
+        ListNode *slow = head;
+        ListNode *fast = head;
+        while(fast != nullptr && fast->next != nullptr){
+            slow = slow->next;
+            fast = fast->next->next;
+        }
+        ListNode *prev = nullptr;
+        ListNode *curr = slow;
+        while(curr != nullptr){
+            ListNode* nextNode = curr->next;
+            curr->next = prev;
+            prev =curr;
+            curr = nextNode;
+        }
+        ListNode *secondhalf = prev;
+        ListNode *firsthalf = head;
+        while(secondhalf!=nullptr){
+            if(firsthalf->val != secondhalf->val){
                 return false;
             }
-            left++;
-            right--;
+            firsthalf = firsthalf ->next;
+            secondhalf = secondhalf->next;
         }
-        
         return true;
-
-
         
     }
 };
