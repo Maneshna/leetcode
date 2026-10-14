@@ -12,26 +12,25 @@
 class Solution {
 public:
     int countNodes(TreeNode* root) {
+        //so it the tree is balanced then findo ne side and double it. 
         if(root==nullptr) return 0;
         int leftHeight =0;
-        TreeNode* leftNode =root;
+        int rightHeight =0;
+        TreeNode* leftNode = root;
+        TreeNode* rightNode =root;
         while(leftNode != nullptr){
             leftHeight++;
-            leftNode = leftNode ->left;
+            leftNode = leftNode->left;
         }
-
-        int rightHeight =0;
-        TreeNode* rightNode = root;
         while(rightNode != nullptr){
             rightHeight++;
             rightNode = rightNode->right;
         }
 
         if(leftHeight == rightHeight){
-            return (1<< leftHeight)-1;
+            return(1<<leftHeight) -1;
         }
-
-        return 1+countNodes(root->left)+ countNodes(root->right);
+        return 1+countNodes(root->left) +countNodes(root->right);
         
     }
 };
