@@ -4,7 +4,7 @@ public:
          int m = str1.size();
         int n = str2.size();
 
-        // Step 1: Build LCS DP table
+        
         vector<vector<int>> dp(
             m + 1, vector<int>(n + 1, 0)
         );
@@ -28,7 +28,7 @@ public:
             }
         }
 
-        // Step 2: Reconstruct the SCS
+        
         string ans = "";
 
         int i = m;
@@ -36,7 +36,7 @@ public:
 
         while(i > 0 && j > 0) {
 
-            // Characters match
+            
             if(str1[i-1] == str2[j-1]) {
 
                 ans += str1[i-1];
@@ -45,14 +45,14 @@ public:
                 j--;
             }
 
-            // Take character from str1
+            
             else if(dp[i-1][j] > dp[i][j-1]) {
 
                 ans += str1[i-1];
                 i--;
             }
 
-            // Take character from str2
+            
             else {
 
                 ans += str2[j-1];
@@ -60,7 +60,7 @@ public:
             }
         }
 
-        // Step 3: Add remaining characters
+        
         while(i > 0) {
             ans += str1[i-1];
             i--;
@@ -71,7 +71,7 @@ public:
             j--;
         }
 
-        // Step 4: Reverse the answer
+        
         reverse(ans.begin(), ans.end());
 
         return ans;
